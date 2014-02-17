@@ -1,0 +1,28 @@
+<% provide(:title, @game.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <!--%= gravatar_for @user %-->
+        Welcome to <%= @game.name %> <br/> 
+      </h1>
+      CONTENT! <!-- @game. content? however game gets discplayed-->
+        <!--%= @user.messages %-->
+
+      <%= form_for(:score, url: scores_path) do |f| %>
+
+      <%= f.label :value %>
+      <%= f.text_field :value %>
+
+      <!--best movie lines new movie rating good for reference -->
+      <%= f.hidden_field :game_id, value=@game.id %>
+
+      
+      <%= f.hidden_field :user_id, value=current_user.id %>
+
+
+      <%= f.submit "Submit Score", class: "btn btn-large btn-primary" %>
+    <% end %>
+    </section>
+  </aside>
+</div>

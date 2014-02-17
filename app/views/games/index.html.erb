@@ -1,0 +1,7 @@
+<% provide(:title,"Game List")%>
+<% @games.each do |game| %>
+		<%if !game.name.nil?%>
+			<% targ = games_path + "/" + game.id.to_s %>
+			<%=link_to game.name, targ%> <br/>
+		<%end%>
+<%end%>
