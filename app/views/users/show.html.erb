@@ -8,8 +8,14 @@
         <%= @user.name %>
         <br/>
         <%= @user.email %>
-        <!--%= @user.messages %-->
+        <br/>
       </h1>
+      <br/>
+      <div>
+        Recent Scores<br/>
+        <%= render Score.where(user_id:@user.id).order(created_at: :desc).take(5) %>
+        <!--%= @user.messages %-->
+      </div>
     </section>
   </aside>
 </div>

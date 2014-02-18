@@ -1,6 +1,6 @@
 <% provide(:title,"User List")%>
 <% @users.each do |user| %>
-		<%if !user.name.nil?%>
+		<%if !user.name.nil?%> <!--can be done better with a user partial and the render users-->
 		<% targ = users_path + "/" + user.id.to_s %>
 		<%= link_to user.name, targ%> <%=user.email%> <br/>
 		<%end%>
