@@ -7,7 +7,7 @@ class ScoresController < ApplicationController
     @score = Score.new(value: params[:score][:value], game: Game.find(params[:score][:gameid]), user: current_user)
 	  if !current_user.nil? && @score.save#&& user.authenticate(params[:session][:password])
 	    #@score.save
-	    flash[:error] = 'Success!'
+	    flash[:success] = 'Success!'
 	    redirect_to scores_path
 	  else
 	    flash.now[:error] = 'Some issue with score' 

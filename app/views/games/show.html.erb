@@ -26,10 +26,12 @@
 
     <% end %>
     <br/><br/>
-      <%= form_for(:favorite, url: '#') do |f| %>
+    <%if signed_in?%>
+      <%= form_for(:favorite, url: favorites_path) do |f| %>
       <%= f.hidden_field :game_id, :value =>@game.id%>
       <%= f.submit "Favorite", class: "btn btn-large btn-primary" %>
       <%end%>
+    <%end%>
     </section>
   </aside>
 </div>

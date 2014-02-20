@@ -5,6 +5,7 @@ ProjectInitial::Application.routes.draw do
   resources :games
   resources :users
   resources :scores
+  resources :favorites #questionable
   #resources :achievements
   resources :sessions, only: [:new, :create, :destroy]
   match '/signin',  to: 'sessions#new',         via: 'get'

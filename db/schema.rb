@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218030811) do
+ActiveRecord::Schema.define(version: 20140219003544) do
 
   create_table "achievements", force: true do |t|
     t.string   "name"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20140218030811) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "lastName"
+    t.integer  "liked",           default: 0
   end
 
 end
