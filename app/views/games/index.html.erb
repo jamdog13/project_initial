@@ -1,9 +1,16 @@
 <% provide(:title,"Game List")%>
+<table border=3>
 <% @games.each do |game| %>
+	<tr>
 		<%if !game.name.nil?%>
 			<% targ = games_path + "/" + game.id.to_s %>
-			<%=link_to game.name, targ%>  Times played: <%=Score.where(game_id:game.id).count%> <!--%=game.times_played%--> High Score: 
-			<% @highscore=Score.where(game_id:game.id).order(value: :desc).first %>
+			<td><%=link_to game.name, targ%>   </td>
+			<td>	Times played: <%=Score.where(game_id:game.id).count%> </td>
+			<td> High Score: <% @highscore=Score.where(game_id:game.id).order(value: :desc).first %>
+			
 			<%= render @highscore %>
+		</td>
 		<%end%>
+	</tr>
 <%end%>
+</table>

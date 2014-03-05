@@ -11,6 +11,7 @@ User.create(name:"a",email:"a@b.c",password:"a", password_confirmation:"a")
 Game.create(name:"TestGame")
 Game.create(name:"FishGame")
 Game.create(name:"UnfunGame")
+Game.create(name:"Word Search")
 #q=User.new
 #q.name="thirdly"
 #q.email="third@third.com"
@@ -55,6 +56,10 @@ Score.create(value:383,user_id:3,game_id:1)
 Score.create(value:373,user_id:3,game_id:3)
 Score.create(value:363,user_id:3,game_id:2)
 Score.create(value:353,user_id:3,game_id:3)
+
+Score.create(value:50,user_id:3,game_id:4)
+Score.create(value:100,user_id:2,game_id:4)
+Score.create(value:150,user_id:1,game_id:4)
 Comments.create(content:"Fish Game is the best!",user_id:1,game_id:2,likes:3)
 Comments.create(content:"Such riveting graphics, the fish jump right out at you!",user_id:2,game_id:2,likes:1)
 Comments.create(content:"First!",user_id:3,game_id:2,likes: -123)
@@ -66,3 +71,18 @@ Comments.create(content:"meow",user_id:2,game_id:1,likes:2)
 Comments.create(content:"MEOW",user_id:3,game_id:1,likes:3)
 Comments.create(content:"meow?",user_id:2,game_id:1,likes:2)
 Comments.create(content:"meow.",user_id:1,game_id:1,likes:3)
+Comments.create(content:"meow.",user_id:1,game_id:4,likes:3)
+Message.create(title:"spam",content:"more spam",recipient:1,sender:2)
+Message.create(title:"spams",content:"more pam",recipient:1,sender:3)
+Message.create(title:"spammer",content:"moe spam",recipient:3,sender:2)
+Message.create(title:"spamalot",content:"mre spam",recipient:3,sender:1)
+Message.create(title:"spamming",content:"ore spam",recipient:2,sender:1)
+Message.create(title:"spammy",content:"mor spam",recipient:2,sender:3)
+
+  			Game.find(4).update_attribute(:times_played,Score.where(game_id:4).count)
+
+  			Game.find(3).update_attribute(:times_played,Score.where(game_id:3).count)
+
+  			Game.find(2).update_attribute(:times_played,Score.where(game_id:2).count)
+
+  			Game.find(1).update_attribute(:times_played,Score.where(game_id:1).count)

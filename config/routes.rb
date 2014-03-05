@@ -2,16 +2,22 @@ ProjectInitial::Application.routes.draw do
   get "users/new"
   match '/signup', to:'users#new', via: 'get'
   root 'static_pages#home'
+  match '/mail', to:'static_pages#mail', via: 'get'
+  match '/games/4', to:'static_pages#wordsearch', via:'get'
+  # MATCH GAMES/4 to static_pages#wordsearch or something, that would be clutch, just gotta figure out all the passing details and stuff but it could work...
+  match '/wordsearch', to:'static_pages#wordsearch', via: 'get'
   resources :games
-  resources :users
+  resources :wordsearch
+  resources :users do
+   resources :messages
+ end
   resources :scores
   resources :comments
-  resources :messages
   resources :favorites #questionable
   #resources :achievements
   resources :sessions, only: [:new, :create, :destroy]
 
-  match '/messages/new',  to: 'messages#new',         via: 'post'
+  #match '/messages/new',  to: 'messages#new',         via: 'post'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   # The priority is based upon order of creation: first created -> highest priority.

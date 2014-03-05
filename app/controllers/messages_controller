@@ -1,20 +1,27 @@
 class MessagesController < ApplicationController
+#	def create
+#		@meow=meow
+#		redirect_to scores_path
+#	end
 	def new
-		@id=params[:id]
-   		@message = Message.new
+		@rec=params[:user_id]
+   		@message = Message.new(recipient:user_id,sender:current_user.id,received:"Unread")
 	end
 
-	def create
-		rec_id = params[:message][:recipient]
-    	@message = Message.new(recipient: rec_id, sender: current_user.id ,content:params[:message][:content],title:params[:message][:title])
-	  	if !current_user.nil? && @message.save
-	   	 	flash[:success] = 'Message sent!'
-	   	 	redirect_to root_path
-	  	else
-	    	flash.now[:error] = 'Some issue with message' 
-	    	if current_user.nil?
-	    		flash.now[:error] = 'Login to send messages' 
-	    	end
-	  	end
-	end
+
+#	def create
+#		rec_id = params[:message][:recipient]
+ #   	@message = Message.new(recipient: rec_id, sender: current_user.id ,content:params[:message][:content],title:params[:message][:title])
+#	  	if !current_user.nil? && @message.save
+#	   	 	flash[:success] = 'Message sent!'
+#	   	 	redirect_to root_path
+#	  	else
+#	    	flash.now[:error] = 'Some issue with message' 
+#	    	if current_user.nil?
+#	    		flash.now[:error] = 'Login to send messages' 
+#	    	end
+#	    	redirect_to root_path
+#	  	end
+#	  	redirect_to root_path
+#	end
 end

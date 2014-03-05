@@ -8,6 +8,7 @@
           <% if signed_in? %>
               <% targ = users_path+"/"+current_user.id.to_s%>
               <li><%= link_to current_user.name, targ%></li>
+              <li><%= link_to "Mail", "/mail"%></li>
           <% end %>
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Games", games_path%></li>

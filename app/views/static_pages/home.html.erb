@@ -11,4 +11,6 @@
   <% @tops = Game.all.order(times_played: :desc).take(3) %>
 
   <%=render @tops%> 
+  <br/>
+  For your demoing pleasure <%= link_to "Word Search Demo", wordsearch_path %>
 </div>

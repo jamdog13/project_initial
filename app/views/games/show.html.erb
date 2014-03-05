@@ -1,3 +1,7 @@
+<script src='http://code.jquery.com/jquery-1.9.1.js'></script>
+  <script src='http://code.jquery.com/ui/1.10.3/jquery-ui.js'></script>
+
+  <link rel='stylesheet' href='http://code.jquery.com/ui/1.10.3/themes/start/jquery-ui.css'>
 <% provide(:title, @game.name) %>
 
     <section>
@@ -33,23 +37,44 @@
     <%end%>
     </section>
 
-    <div class="center hero-unit">
-      <h2>
-        Comments (To do: make tabs so you can switch to view high scores or instructions)
-      </h2>
-      <%= form_for(:comment, url: comments_path) do |f| %>
+    <div class="center hero-unit" id="nav">
+      <ul>
+          <li><a href="#nav1">Comments</a></li>
+      <li><a href="#nav2">Highscores</a></li>
 
-      <%= f.label :content %>
-      <%= f.text_area :content %>
+      <li><a href="#nav3">Factoids</a></li>
+        </ul>
+        <div id="nav1">
+        <%= form_for(:comment, url: comments_path) do |f| %>
 
-      <!--best movie lines new movie rating good for reference -->
-      <%= f.hidden_field :gameid, :value =>@game.id%>
+        <%= f.label :content %>
+        <%= f.text_area :content %>
+
+        <!--best movie lines new movie rating good for reference -->
+        <%= f.hidden_field :gameid, :value =>@game.id%>
 
 
-      <%= f.submit "Post Comment", class: "btn btn-large" %>
-      <%end%>
-      <%=render @comments, paginate:true, size:3 %>
-      <%=will_paginate @comments%>
-      <!--%=render @comments %-->
+        <%= f.submit "Post Comment", class: "btn btn-large" %>
+        <%end%>
+        <% @comments=Comments.where(game_id:@game.id).paginate(:page => params[:page], :per_page =>5).order(created_at: :desc) %>
+        <%if (!@comments.nil?)%>
+        <%=render @comments, paginate:true, size:3 %>
+        <%=will_paginate @comments%>
+        <%end%>
+        <!--%=render @comments %-->
+      </div>
+      <div id="nav2">
+        <% @high=Score.where(game_id:@game.id).order(value: :desc).take(25) %>
+        <%if (!@high.nil?)%>
+        <%=render @high %>
+        <%end%>
+      </div>
+      <div id="nav3">
+        The average at <%=@game.name%> is <%=Score.where(game_id:@game.id).average(:value).round%>
+      </div>
     </div>
     </div>
+    <script>$(document).ready(function() 
+    {
+    $('#nav').tabs({});
+  });</script>

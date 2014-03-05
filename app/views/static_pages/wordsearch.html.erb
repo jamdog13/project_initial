@@ -1,0 +1,82 @@
+<script src='http://code.jquery.com/jquery-1.9.1.js'></script>
+	<script src='http://code.jquery.com/ui/1.10.3/jquery-ui.js'></script>
+<%@game=Game.find(4)%>
+	<link rel='stylesheet' href='http://code.jquery.com/ui/1.10.3/themes/start/jquery-ui.css'>
+<table border=1 style="font-weight:bold;font-size:2em;">
+<tr><td>.<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+<tr><td>1</td><td>Q	</td><td>B	</td><td>D</td>	<td>R	</td><td>O	</td><td>J	</td><td>W	</td><td>W</td>	<td>U</td>	<td>J</td>	<td>L</td>	</tr>
+<tr><td>2</td><td>S	</td><td>Q	</td><td>G</td><td>	D	</td><td>H	</td><td>I	</td><td>S	</td><td>E	</td><td>M	</td><td>A</td>	<td>G	</td></tr>
+<tr><td>3</td><td>M	</td><td>O	</td><td>R</td>	<td>N	</td><td>C	</td><td>D	</td><td>G	</td><td>W	</td><td>E	</td><td>J</td>	<td>K	</td></tr>
+<tr><td>4</td><td>F	</td><td>P	</td><td>C</td>	<td>P	</td><td>L	</td><td>U</td><td>	R	</td><td>A	</td><td>L	</td><td>S</td>	<td>C	</td></tr>
+<tr><td>5</td><td>D	</td><td>V	</td><td>V	</td><td>R	</td><td>V	</td><td>B</td>	<td>S	</td><td>T	</td><td>H	</td><td>T	</td><td>E	</td></tr>
+<tr><td>6</td><td>P	</td><td>A	</td><td>L	</td><td>I	</td><td>N	</td><td>D</td>	<td>R	</td><td>O	</td><td>M	</td><td>E</td>	<td>K	</td></tr>
+<tr><td>7</td><td>G	</td><td>I	</td><td>J	</td><td>L	</td><td>X	</td><td>N</td>	<td>R	</td><td>R	</td><td>Y	</td><td>K</td>	<td>F	</td></tr>
+<tr><td>8</td><td>G	</td><td>L	</td><td>S</td>	<td>J	</td><td>A	</td><td>F	</td><td>S	</td><td>D	</td><td>R	</td><td>O</td>	<td>W</td>	</tr>
+<tr><td>9</td><td>B	</td><td>A	</td><td>W	</td><td>P</td>	<td>U	</td><td>X	</td><td>Z	</td><td>B	</td><td>K	</td><td>C</td>	<td>D</td>	</tr>
+<tr><td>10</td><td>L	</td><td>O	</td><td>W	</td><td>N	</td><td>W	</td><td>B	</td><td>J	</td><td>J	</td><td>D	</td><td>M	</td><td>G</td>	</tr>
+<tr><td>11</td><td>B</td><td>	O</td><td>	O</td><td>	K</td><td>	S</td><td>	V</td><td>	A</td><td>	I</td><td>	K</td><td>	K</td><td>	S</td>	</tr>
+</table>
+Enter the row and column of the starting letter of the word <br/>
+<%= form_for(:resp, url: wordsearch_index_path) do |f| %>
+<table border=4>
+	<tr>
+<td>words</td><td> <%= f.label :row %> </td>     <td> <%= f.text_field :roww %> </td> <td><%= f.label :column %>     </td>  <td><%= f.text_field :colw %></td> </tr>
+<tr><td>games</td> <td> <%= f.label :row %>      </td> <td><%= f.text_field :rowg %> </td><td> <%= f.label :column %>    </td>  <td> <%= f.text_field :colg %></td> </tr>
+<tr><td>books </td> <td><%= f.label :row %>      </td> <td><%= f.text_field :rowb %> </td> <td><%= f.label :column %>     </td> <td> <%= f.text_field :colb %></td> </tr>
+<tr><td>palindrome </td><td> <%= f.label :row %>      </td><td> <%= f.text_field :rowp %> </td> <td><%= f.label :column %> </td>  <td>    <%= f.text_field :colp %></td> </tr>
+<tr><td>plurals </td> <td><%= f.label :row %>    </td><td>   <%= f.text_field :rows %> </td><td> <%= f.label :column %>    </td> <td>  <%= f.text_field :cols %></td> </tr>
+<%= f.hidden_field :gameid, :value =>4%>
+</table>
+<%= f.submit "Submit Score", class: "btn btn-large btn-primary" %>
+<%end%>
+
+    <br/><br/>
+    <%if signed_in?%>
+      <%= form_for(:favorite, url: favorites_path) do |f| %>
+      <%= f.hidden_field :game_id, :value =>4%>
+      <%= f.submit "Favorite", class: "btn btn-large btn-primary" %>
+      <%end%>
+    <%end%>
+    </section>
+
+    <div class="center hero-unit" id="nav">
+    	<ul>
+        	<li><a href="#nav1">Comments</a></li>
+			<li><a href="#nav2">Highscores</a></li>
+			<li><a href="#nav3">Factoids</a></li>
+        </ul>
+        <div id="nav1">
+	      <%= form_for(:comment, url: comments_path) do |f| %>
+
+	      <%= f.label :content %>
+	      <%= f.text_area :content %>
+
+	      <!--best movie lines new movie rating good for reference -->
+	      <%= f.hidden_field :gameid, :value =>4%>
+
+
+	      <%= f.submit "Post Comment", class: "btn btn-large" %>
+	      <%end%>
+	      <% @comments=Comments.where(game_id:4).paginate(:page => params[:page], :per_page =>5).order(created_at: :desc) %>
+	      <%if (!@comments.nil?)%>
+	      <%=render @comments, paginate:true, size:3 %>
+	      <%=will_paginate @comments%>
+	      <%end%>
+	      <!--%=render @comments %-->
+  		</div>
+  		<div id="nav2">
+  			<% @high=Score.where(game_id:4).paginate(:page => params[:page], :per_page =>10).order(value: :desc) %>
+	      <%if (!@high.nil?)%>
+	      <%=render @high, paginate:true, size:3 %>
+	      <%=will_paginate @high%>
+	      <%end%>
+  		</div>
+  		<div id="nav3">
+        The average at <%=@game.name%> is <%=Score.where(game_id:@game.id).average(:value).round%>
+      </div>
+    </div>
+    </div>
+    <script>$(document).ready(function() 
+		{
+		$('#nav').tabs({});
+	});</script>

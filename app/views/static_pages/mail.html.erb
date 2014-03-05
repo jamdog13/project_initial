@@ -1,0 +1,8 @@
+Mailbox for <%=current_user.name%> 
+<%@message=Message.where(recipient:current_user.id) %>
+<h3>Received <%=@message.count%></h3>
+
+<%= render @message %>
+<%@message=Message.where(sender:current_user.id) %>
+<h3>Sent  <%=@message.count%> </h3>
+<%= render @message %> <br/>
