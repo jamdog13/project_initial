@@ -1,7 +1,12 @@
 <% provide(:title,"User List")%>
+<!-- makes tables-->
+<table border="1">
 <% @users.each do |user| %>
+	<tr>
 		<%if !user.name.nil?%> <!--can be done better with a user partial and the render users-->
-		<% targ = users_path + "/" + user.id.to_s %>
-		<%= link_to user.name, targ%> <%=user.email%> <br/>
+			<% targ = users_path + "/" + user.id.to_s %>
+			<td><%= link_to user.name, targ%> </td> <td> <%=user.email%> <br/></td>
 		<%end%>
+	</tr>
 <%end%>
+</table>

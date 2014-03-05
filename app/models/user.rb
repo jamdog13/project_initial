@@ -12,7 +12,7 @@ validates :name, presence: true, length: {maximum:50}
 	has_and_belongs_to_many :messages
 
 	has_many :messages_users
-
+	has_many :comments
 	has_many :favorites
 	has_many :achievements
 	#has_many :friends, :class_name => "User"

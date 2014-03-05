@@ -5,7 +5,12 @@
   </small>
   <nav>
     <ul>
-      <li><%= link_to "New User",   new_user_path %></li>
+      <% if !signed_in? %>
+        <li><%= link_to "New User",   new_user_path %></li>
+      <% else%>
+        <% targ = users_path+"/"+current_user.id.to_s%>
+        <li><%= link_to "Profile", targ %></li>
+      <% end %>
       <li><%= link_to "Home", root_path %></li>
     </ul>
   </nav>

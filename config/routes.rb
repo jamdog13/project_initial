@@ -5,9 +5,13 @@ ProjectInitial::Application.routes.draw do
   resources :games
   resources :users
   resources :scores
+  resources :comments
+  resources :messages
   resources :favorites #questionable
   #resources :achievements
   resources :sessions, only: [:new, :create, :destroy]
+
+  match '/messages/new',  to: 'messages#new',         via: 'post'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   # The priority is based upon order of creation: first created -> highest priority.

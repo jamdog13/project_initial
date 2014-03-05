@@ -9,6 +9,14 @@
         <br/>
         <%= @user.email %>
         <br/>
+        <% if signed_in? %>
+        <br/>
+          <%= form_for(:send, url: new_message_path) do |f| %>
+            <%= f.hidden_field :id, value:@user.id%>
+            <%= f.submit "Send message", class: "btn btn-large" %>
+          <% end %>
+          
+        <% end %>
       </h1>
       <br/>
       <div>

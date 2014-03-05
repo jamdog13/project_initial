@@ -1,0 +1,12 @@
+<% provide(:title, 'Send Message') %>
+Send message to <!--%=User.find(params[:id])%-->
+<%= form_for(:message, url: messages_path) do |f| %>
+
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+
+      <!--%= f.hidden_field :recipient, :value =>params[:id]%-->
+
+
+<%= f.submit "Send message", class: "btn btn-large" %>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219003544) do
+ActiveRecord::Schema.define(version: 20140225011347) do
 
   create_table "achievements", force: true do |t|
     t.string   "name"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20140219003544) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "content"
+    t.integer  "likes"
+    t.integer  "game_id"
   end
 
   create_table "favorites", force: true do |t|
@@ -61,6 +70,8 @@ ActiveRecord::Schema.define(version: 20140219003544) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "received"
+    t.integer  "sender"
+    t.integer  "recipient"
   end
 
   create_table "messages_users", force: true do |t|

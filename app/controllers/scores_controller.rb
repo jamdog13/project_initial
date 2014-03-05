@@ -2,7 +2,7 @@ class ScoresController < ApplicationController
 	def create #needs to be made
 
   	game = Game.find(params[:score][:gameid])
-  	game.update_attribute(:times_played,game.times_played+1)
+  	game.update_attribute(:times_played,Score.where(game_id:params[:score][:gameid]).count)
     # TBD TBD TBD need to have the current user
     @score = Score.new(value: params[:score][:value], game: Game.find(params[:score][:gameid]), user: current_user)
 	  if !current_user.nil? && @score.save#&& user.authenticate(params[:session][:password])
@@ -25,6 +25,6 @@ class ScoresController < ApplicationController
   
 	end
 	def index
-		@scores=Score.all
+		@scores=Score.all.paginate(:page => params[:page], :per_page =>30).order(created_at: :desc)
 	end
 end

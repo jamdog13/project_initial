@@ -1,2 +1,6 @@
 <% provide(:title,"Scores")%>
-<%= render @scores %>
+<%= render @scores, paginate:true%>
+<%=will_paginate @scores%>
+
+
+      
